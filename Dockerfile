@@ -4,6 +4,12 @@ FROM php:8.1-apache
 # Cài đặt các extension PHP cần thiết cho MySQL và PDO
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+# Cài đặt MySQL client
+RUN apt-get update && apt-get install -y default-mysql-client
+
+# Cấu hình thư mục làm việc
+WORKDIR /var/www/html
+
 # Cài đặt Composer (trình quản lý PHP)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
